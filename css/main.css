@@ -1,0 +1,142 @@
+body {
+	background-color: #ebe0cf;
+}
+
+.container {
+    width: min(100%, 45rem);
+    margin-inline: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+#mug, #spiral__container, #steam__container {
+    width: min(100%, 20rem);
+    min-height: 25rem;
+    position: absolute;
+    margin-inline: auto;
+}
+
+#mug {
+	z-index: 3;
+}
+
+
+#spiral__container {
+    z-index: 1;
+}
+
+#steam__container {
+    z-index: 2;
+}
+
+/* puffs of steam animation */
+.steam {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.steam-puff {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(255, 255, 255, 0.7 );
+    border-radius: 50%;
+    animation: floatUp 4s ease-in-out infinite;
+    filter: blur(1px);
+    top: 55%;
+}
+
+.steam-puff:nth-child(1) {
+    width: 5%;
+    animation-delay: 0s;
+    left: 30%;
+    --puff-height: 20%;
+}
+
+.steam-puff:nth-child(2) {
+    width: 10%;
+    animation-delay: 1.3s;
+    left: 60%;
+    --puff-height: 16%;
+}
+
+.steam-puff:nth-child(3) {
+    width: 8%;
+    animation-delay: 0.7s;
+    left: 50%;
+    --puff-height: 25%
+}
+
+.steam-puff:nth-child(4) {
+    width: 6%;
+    animation-delay: 1.9s;
+    left: 40%;
+    --puff-height: 13%;
+}
+
+
+@keyframes floatUp {
+    0% {
+        top: 55%;
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        top: var(--puff-height);
+        opacity: 0;
+    }
+}
+
+
+/* Spiral animations */
+.steam__group path {
+    opacity: 0.8;
+	stroke-linecap: round;
+	stroke-dasharray: var(--dash-length);
+	stroke-dashoffset: var(--dash-length);
+	animation: drawSpiral 8s ease-in-out forwards infinite;
+}
+
+.blur path {
+    opacity: 0.5;
+	filter: blur(10px);
+}
+
+#smallest path {
+    animation-delay: 1.5s;
+	--dash-length: 200;
+}
+
+#small path {
+	animation-delay: 1s;
+	--dash-length: 300;
+}
+
+#big path {
+	animation-delay: 0.5s;
+	--dash-length: 420;
+}
+
+#biggest path {
+	animation-delay: 0s;
+	--dash-length: 500;
+}
+
+@keyframes drawSpiral {
+	0% {
+		stroke-dashoffset: var(--dash-length);
+	}
+	75% {
+		stroke-dashoffset: 100;
+	}
+	100% {
+		stroke-dashoffset: var(--dash-length);
+	}
+}
+
